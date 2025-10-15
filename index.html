@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MAHMOUD KHALED</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Cairo", sans-serif;
+  background:linear-gradient(135deg,#0f172a,#2a1541,#0d2866);
+  background-size:400% 400%;
+  animation:gradientMove 15s ease infinite;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  overflow:hidden;
+}
+@keyframes gradientMove {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  text-align:center;
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.hidden{opacity:0;pointer-events:none;transform:scale(0.98);}
+.btn{
+  margin-top:20px;
+  padding:12px 24px;
+  font-size:18px;
+  background:linear-gradient(90deg,#ff00ff,#00e0ff);
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  color:#fff;
+  font-weight:bold;
+  animation:bounce 2s infinite,pulse 1.5s infinite alternate;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 30px #00e0ff;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes pulse{0%{box-shadow:0 0 10px #ff00ff;}100%{box-shadow:0 0 25px #00e0ff;}}
+.glass{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 0 30px rgba(0,0,0,0.4);
+  padding:60px 30px 30px;
+  border-radius:20px;
+  max-width:750px;
+  line-height:1.8;
+  font-size:17px;
+  text-align:right;
+  position:relative;
+  overflow:visible;
+  transition:all 0.8s ease;
+}
+.stars, .bubbles{position:fixed;inset:0;pointer-events:none;z-index:-1;}
+.star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:twinkle 2s infinite alternate;}
+@keyframes twinkle{from{opacity:.2;}to{opacity:1;}}
+.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.1);animation:rise 10s infinite;}
+@keyframes rise{from{transform:translateY(100vh) scale(.5);opacity:0;}to{transform:translateY(-10vh) scale(1);opacity:1;}}
+.intro-anim{display:flex;align-items:center;justify-content:center;flex-direction:column;height:100%;}
+.welcome-text{font-size:60px;font-weight:bold;background:linear-gradient(90deg,#ff00ff,#00e0ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0;animation:fadeIn 2s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:scale(.8);}to{opacity:1;transform:scale(1);}}
+.btn-back{
+  position:absolute;
+  top:10px;
+  left:10px;
+  font-size:16px;
+  padding:8px 14px;
+  background:linear-gradient(90deg,#00e0ff,#ff00ff);
+  border:none;
+  border-radius:8px;
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+.btn-back:hover{transform:scale(1.05);box-shadow:0 0 20px #00e0ff;}
+img{border-radius:15px;box-shadow:0 0 20px rgba(255,255,255,0.3);margin-top:20px;}
+#imgContainer {display:none;text-align:center;transition:all 1s ease;}
+#imgContainer.show {display:block;opacity:1;transform:translateY(-20px);}
+input{
+  padding:12px;
+  width:80%;
+  margin:10px auto;
+  display:block;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+  outline:none;
+  transition:0.3s ease;
+}
+input:focus{border-color:#00e0ff;box-shadow:0 0 10px #00e0ff;}
+.scroll-box{
+  max-height:400px;
+  overflow-y:auto;
+  padding-right:10px;
+  scrollbar-width:thin;
+  scrollbar-color:#00e0ff rgba(255,255,255,0.1);
+}
+.scroll-box::-webkit-scrollbar{width:6px;}
+.scroll-box::-webkit-scrollbar-thumb{background:#00e0ff;border-radius:5px;}
+.scroll-box::-webkit-scrollbar-track{background:rgba(255,255,255,0.1);}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="bubbles"></div>
+
+<!-- الصفحة 1 -->
+<div class="screen" id="screen1">
+  <div class="intro-anim">
+    <h1 class="welcome-text">𝕎𝕖𝕝𝕔𝕠𝕞𝕖 ✨</h1>
+  </div>
+</div>
+
+<!-- الصفحة 2 -->
+<div class="screen hidden" id="screen2">
+  <div class="glass">
+    <p>✨ أنا محمود خالد، حاولت أقدّم حاجة بسيطة بي شغلي ممكن تكون جديدة و لأول مرة تتعمل مستني رأيك في المشروع 😁✨</p>
+    <p>تجربة صغيرة بس من قلبي، وأتمنى تعجبكم ♥️♥️</p>
+  </div>
+  <button class="btn" onclick="nextScreen(2)">Next</button>
+</div>
+
+<!-- تسجيل الدخول -->
+<div class="screen hidden" id="screen3">
+  <div class="glass" style="max-width:400px;text-align:center;">
+    <button class="btn-back" onclick="prevScreen(3)">Back</button>
+    <h2>🔐 تسجيل الدخول</h2>
+    <input id="user" type="text" placeholder="اسم المستخدم">
+    <input id="pass" type="password" placeholder="كلمة المرور">
+    <button class="btn" onclick="login()">Next</button>
+  </div>
+</div>
+
+<!-- الصفحة 4 -->
+<div class="screen hidden" id="screen4">
+  <div class="glass">
+    <button class="btn-back" onclick="prevScreen(4)">Back</button>
+    <p>الموقع ده مخصوص لي شخصي المفضل</p>
+    <p>حابب أشكرك على كل حاجة عملتيها معايا بجد 🙏</p>
+    <p>شكراً لوجودك في حياتي <b>ENG. Esraa Youssef</b></p>
+    <p>وهتفضلي أختي وصديقتي الكبيرة</p>
+    <p>شكراً لدعم حضرتك ليا طول الوقت 🌹</p>
+  </div>
+  <button class="btn" onclick="nextScreen(4)">Next</button>
+</div>
+
+<!-- صفحة الصور -->
+<div class="screen hidden" id="screen5">
+  <div class="glass" id="imgGlass" style="max-height:550px; overflow:hidden; display:flex; flex-direction:column;">
+    <button class="btn-back" onclick="prevScreen(5)">Back</button>
+    <p>🎁 حاجة بسيطة قبل الرسالة 🎁</p>
+    <button class="btn" id="showImgBtn" onclick="askPassword()">إظهار الصور 📸</button>
+
+    <div id="imgContainer" style="display:none; text-align:center; margin-top:20px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#00e0ff #0f172a; padding-right:5px;">
+      <div id="imgGallery" style="display:flex; flex-direction:column; align-items:center; gap:25px;"></div>
+      <button class="btn" id="nextAfterImg" style="margin-top:15px;" onclick="nextScreen(5)">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function askPassword(){
+  let pass = prompt("🔒 من فضلك أدخل كلمة السر لعرض الصور:");
+  if(pass === "1610"){
+    document.getElementById('showImgBtn').style.display = 'none';
+    const imgC = document.getElementById('imgContainer');
+    const gallery = document.getElementById('imgGallery');
+    const imgGlass = document.getElementById('imgGlass');
+    imgC.style.display = 'block';
+    imgGlass.style.transform = "scale(1.02)";
+    setTimeout(()=>{ imgGlass.style.transform = "scale(1)"; }, 600);
+
+    // مصفوفة الصور
+    const imgs = [
+      {src:"esraaim1.jpeg", msgs:["🎉 كل سنة وأنتِ طيبة يا أحن وأجمل إنسانة!","🙏 ربنا يجعل أيامك كلها فرح وسعادة.","💖 أتمنى تفضلي مبتسمة دايمًا زي صورتك دي."]},
+      {src:"esraaim2.jpeg", msgs:["🎉 عيد ميلاد سعيد يا أحلى مهندسة في الدنيا!","🙏 ربنا يحققلك كل اللي بتتمنيه.","💖 وأتمنى تفضلي النور اللي بيهون أي تعب."]},
+      {src:"esraaim3.jpeg", msgs:["🎉 كل سنة وأنتِ مصدر البهجة والطاقة الحلوة.","🙏 ربنا يرزقك راحة بال ونجاح كبير.","💖 أتمنى تبقي أسعد من السنة اللي فاتت."]},
+      {src:"esraaim4.jpeg", msgs:["🎉 يوم جميل زيك بالضبط، كل سنة وأنتِ بخير.","🙏 ربنا يبارك في عمرك ويسعدك بكل خطوة.","💖 أتمنى حياتك تكون كلها لحظات حلوة زي دي."]},
+      {src:"esraaim5.jpeg", msgs:["🎉 عيد ميلاد سعيد، يا أجمل قلب!","🙏 ربنا يديم عليكِ الصحة والفرحة.","💖 أتمنى تفضلي دايمًا منوّرة قلوب الكل."]},
+      {src:"esraaim6.jpeg", msgs:["🎉 كل سنة وأنتِ محققة نجاحات أكتر وأكتر.","🙏 ربنا يوفقك ويكرمك في كل خطوة.","💖 أتمنى دايمًا تشوفي نفسك في المكان اللي تستحقيه."]},
+      {src:"esraaim7.jpeg", msgs:["🎉 عيد ميلادك أجمل مناسبة في السنة!","🙏 ربنا يرزقك راحة بال وطمأنينة دائمة.","💖 أتمنى يفضل قلبك أبيض كده على طول."]},
+      {src:"esraaim8.jpeg", msgs:["🎉 كل سنة وأنتِ بتكبري جمالًا ونجاحًا.","🙏 ربنا يحفظك ويسعدك من كل قلب بيحبك.","💖 أتمنى حياتك تكون مليانة لحظات سلام."]},
+      {src:"esraaim9.jpeg", msgs:["🎉 كل سنة وأنتِ الضحكة اللي بتنور أي مكان.","🙏 ربنا يجعل أيامك كلها سعادة وهنا.","💖 أتمنى تفضلي دايمًا متألقة كده."]},
+      {src:"esraaim10.jpeg", msgs:["🎉 عيد ميلاد سعيد يا أطيب وأحن قلب.","🙏 ربنا يبعد عنك أي وجع أو هم.","💖 أتمنى كل يوم يعدي يكون أجمل من اللي قبله."]},
+      {src:"esraaim11.jpeg", msgs:["🎉 يوم ميلادك يوم البهجة الحقيقي.","🙏 ربنا يفرح قلبك ويكتبلك الخير في كل خطوة.","💖 أتمنى كل حلم ليكي يتحقق قريب."]},
+      {src:"esraaim12.jpeg", msgs:["🎉 كل سنة وأنتِ البركة في حياة كل اللي حواليك.","🙏 ربنا يديمك نور في حياة الناس الحلوة.","💖 أتمنى يفضل قلبك نقي كده دايمًا."]},
+      {src:"esraaim13.jpeg", msgs:["🎉 كل سنة وأنتِ أجمل هدية ربنا رزق بيها الناس.","🙏 ربنا يرزقك راحة وسلام داخلي.","💖 أتمنى تكوني فخورة بنفسك كل لحظة."]},
+      {src:"esraaim14.jpeg", msgs:["🎉 عيد ميلادك يوم مميز زيك بالضبط.","🙏 ربنا يوفقك ويسعدك في كل خطوة جديدة.","💖 أتمنى تفضلي دايمًا قوية ومبتسمة."]},
+      {src:"esraaim15.jpeg", msgs:["𝕎𝕖𝕝𝕔𝕠𝕞𝕖 25 🥳"]}
+    ];
+
+    imgs.forEach((item, i)=>{
+      setTimeout(()=>{
+        const div=document.createElement('div');
+        div.style.textAlign="center";
+        const img=document.createElement('img');
+        img.src=item.src;
+        img.style.width="180px";
+        img.style.borderRadius="10px";
+        img.style.opacity="0";
+        img.style.transition="opacity 1s ease";
+        div.appendChild(img);
+
+        setTimeout(()=>{img.style.opacity="1";},50);
+
+        item.msgs.forEach((m)=>{
+          const p=document.createElement('p');
+          p.textContent=m;
+          p.style.marginTop="6px";
+          p.style.fontSize="16px";
+          p.style.opacity="0";
+          p.style.transition="opacity 1s ease";
+          div.appendChild(p);
+          setTimeout(()=>{p.style.opacity="1";},400);
+        });
+
+        gallery.appendChild(div);
+      }, i*700);
+    });
+
+    setTimeout(()=>{
+      const m=document.getElementById('hpMusic');
+      if(m){m.volume=0.3;m.loop=true;m.play().catch(()=>{});}
+    },1000);
+  } else if(pass){ alert("❌ كلمة السر غير صحيحة!"); }
+}
+</script>
+
+<!-- الصفحة 6 -->
+<div class="screen hidden" id="screen6">
+  <div class="glass" style="max-height:550px; overflow:hidden; display:flex; flex-direction:column;">
+    <button class="btn-back" onclick="prevScreen(6)">Back</button>
+    <img src="esraaim15.jpeg" style="width:90px;margin:auto;">
+    <h2 style="text-align:center;">💌 رسالة خاصة</h2>
+    <div class="scroll-box">
+      <p>كل سنة وحضرتك بخير وصحة وسلامة يا رب، وإن شاء الله السنة دي تحققي إنجازات كتير أوي 💪</p>
+      <p>كل سنة وحضرتك وعقبال 1000000000000000 الرقم الي مش عارف اقراء ده 😂😂😂</p>
+      <p>كل سنة وحضرتك أجمل حاجة في الدنيا،</p>
+      <p>كل سنة وحضرتك مصدر بهجة وراحة لكل اللي حواليكي،</p>
+      <p>كل سنة وحضرتك النور اللي بيهون التعب، والضحكة اللي بتنسي أي وجع.</p>
+      <p>أنا مش لاقي كلام يوصف قد إيه حضرتك غالية…</p>
+      <p>بس عارف إن كل كلمة طيبة، وكل دعوة من قلبي، وكل شكر أنا قلته — مش هيكفي ولا هيعبّر عن نص اللي في قلبي.</p>
+      <p>إنتِ البركة اللي في الأيام، والدعم اللي بيخليني واقف،</p>
+      <p>إنتِ اللي بوجودك أي موقف بيتعدل، وأي زعل بيتنسي، وأي حاجة صعبة بتبقى سهلة.</p>
+      <p>مبسوط إني عرفت إن في حد زيك…</p>
+      <p>مبسوط إني بتكلم معاكي كل يوم…</p>
+      <p>مبسوط إنك فتحتيلي بيتك وعرفّتيني على عيلتك الجميلة…</p>
+      <p>مبسوط إنك بتعاملي محمود بقلب غير أي قلب.</p>
+      <p>أنا بدعي ربنا يبارك في عمرك،</p>
+      <p>ويخليكي للي بتحبيهم ويخليهم ليكي،</p>
+      <p>ويحققلك كل اللي نفسك فيه، من غير ما تحتاجي تطلبي.</p>
+      <p>ربنا يرزقك راحة قلب، ويكتبلك الخير في كل خطوة،</p>
+      <p>ويخلي كل يوم في حياتك أحلى من اللي قبله.</p>
+      <p>إنتِ حاجة كبيرة أوي في عيني، وحاجة غالية أوي في قلبي…</p>
+      <p>وعيد ميلادك مش يوم عادي، ده يوم اتولد فيه إنسانة وجودها فرق بجد.</p>
+      <p>كل سنة وإنتِ بخير وسعادة وراحة،</p>
+      <p>وعقبال مليون سنة كلها فرح ورضا ونجاحات ✨💖</p>
+      <p>(في كلام في الواتس ممكن يكمّل اللي مش عارف أقوله هنا 💬)</p>
+      <p>🎂 كل سنة وحضرتك طيبة يا <b>Eng. Esraa Youssef</b> ❤️</p>
+      <p>🎉 عيد ميلاد سعيد ودايمًا منوّرة دنيتنا 💫</p>
+    </div>
+  </div>
+  <button class="btn" onclick="nextScreen(6)">Next</button>
+</div>
+
+<!-- الصفحة الأخيرة -->
+<div class="screen hidden" id="screen7">
+  <div class="glass" style="text-align:center;">
+    <h2>💖 النهاية 💖</h2>
+    <p>أتمنى تكون التجربة دي عجبتك 🙏</p>
+    <p>وعيد ميلاد سعيد يا أجمل وأطيب إنسانة في الدنيا 🎉</p>
+    <p>🎂 كل سنة وأنتِ بخير وسعادة دايمة 🌸</p>
+    <p>مع تحيات: <b>MAHMOUD KHALED</b> 💙</p>
+  </div>
+</div>
+
+<!-- موسيقى -->
+<audio id="hpMusic" src="HP.mpeg" preload="auto"></audio>
+
+<script>
+// نجوم + فقاعات خلفية
+for(let i=0;i<50;i++){
+  const s=document.createElement('div');
+  s.classList.add('star');
+  s.style.top=Math.random()*100+'%';
+  s.style.left=Math.random()*100+'%';
+  s.style.animationDelay=(Math.random()*5)+'s';
+  document.querySelector('.stars').appendChild(s);
+}
+for(let i=0;i<20;i++){
+  const b=document.createElement('div');
+  b.classList.add('bubble');
+  b.style.width=b.style.height=(Math.random()*20+10)+'px';
+  b.style.left=Math.random()*100+'%';
+  b.style.animationDelay=(Math.random()*8)+'s';
+  b.style.animationDuration=(8+Math.random()*5)+'s';
+  document.querySelector('.bubbles').appendChild(b);
+}
+
+// التنقل بين الصفحات
+let current=1;
+function nextScreen(n){
+  document.getElementById('screen'+n).classList.add('hidden');
+  document.getElementById('screen'+(n+1)).classList.remove('hidden');
+  current=n+1;
+}
+function prevScreen(n){
+  document.getElementById('screen'+n).classList.add('hidden');
+  document.getElementById('screen'+(n-1)).classList.remove('hidden');
+  current=n-1;
+}
+
+// تسجيل الدخول
+function login(){
+  const u=document.getElementById('user').value.trim();
+  const p=document.getElementById('pass').value.trim();
+  if(u==="esraa" && p==="1610"){
+    nextScreen(3);
+  } else {
+    alert("❌ اسم المستخدم أو كلمة المرور غير صحيحة!");
+  }
+}
+
+// البداية التلقائية
+setTimeout(()=>{
+  document.getElementById('screen1').classList.add('hidden');
+  document.getElementById('screen2').classList.remove('hidden');
+},3000);
+</script>
+
+</body>
+</html>
